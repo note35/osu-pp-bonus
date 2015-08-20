@@ -80,6 +80,8 @@ if __name__ == "__main__":
     elif mode == "3":
         prefix = "mania"
 
+    hidepp = 44
+
     top50_player = get_top_player_info(mode)
     result = calc_top_player_bonus_pp(top50_player, mode)
 
@@ -88,7 +90,7 @@ if __name__ == "__main__":
     f = open(strftime("log/"+prefix+"_%Y-%m-%d", gmtime())+'_by_rank.log', 'w')
     for item in result:
         cnt += 1
-        f.write(str(cnt) + " " + str(item[0]) + " => \n\tpp: " +str(item[1]) + ", bonus pp: " +str(item[2]) + "\n")
+        f.write(str(cnt) + " " + str(item[0]) + " => \n\tpp: " +str(item[1]) + ", bonus pp: " +str(item[2]-hidepp) + "\n")
         tmp.append(item)           
 
     cnt = 0
@@ -96,4 +98,4 @@ if __name__ == "__main__":
     f = open(strftime("log/"+prefix+"_%Y-%m-%d", gmtime())+'_by_bonus.log', 'w')
     for item in sort_result:
         cnt += 1
-        f.write(str(cnt) + " " + str(item[0]) + " => \n\tpp: " +str(item[1]) + ", bonus pp: " +str(item[2]) + "\n")
+        f.write(str(cnt) + " " + str(item[0]) + " => \n\tpp: " +str(item[1]) + ", bonus pp: " +str(item[2]-hidepp) + "\n")
