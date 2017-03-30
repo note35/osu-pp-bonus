@@ -58,9 +58,15 @@ def calc_top_player_bonus_pp(top50_player, mode):
         score_with_bonus = int(score_with_bonus)
         score = 0
         for item in bs1.select(".pp-display-weight"):
-            score += int(item.text.split(" ")[2].split("pp")[0][1:])
+            try:
+                score += int(re.findall(r"\d+", item.text.split(" ")[2])[0])
+            except:
+                pass
         for item in bs2.select(".pp-display-weight"):
-            score += int(item.text.split(" ")[2].split("pp")[0][1:])
+            try:
+                score += int(re.findall(r"\d+", item.text.split(" ")[2])[0])
+            except:
+                pass
         result[0].append(player[2])
         result[1].append(score_with_bonus)
         result[2].append(score_with_bonus-score)
